@@ -15,16 +15,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Define Routes
-app.get("/test", (req, res) => {
-  return res.json({
-    message: "here is nodejs",
-  });
-});
-
-app.post("/test1", (req, res) => {
-  const { name } = req.body;
-  return res.json(name);
-});
+app.use("/api/v1/users", require("./routes/user"));
 
 // Serve static assets in production
 if (process.env.NODE_ENV === "production") {
