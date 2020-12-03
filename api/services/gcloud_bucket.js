@@ -1,7 +1,10 @@
 const { Storage } = require("@google-cloud/storage");
 const projectId = process.env.PROJECT_ID;
-const keyFilename = "Jan-Suvidha-523c6c8c68af.json";
-const storage = new Storage({ projectId, keyFilename });
+// const keyFilename = "Jan-Suvidha-523c6c8c68af.json";
+
+const storage = new Storage({
+  credentials: JSON.parse(process.env.SERVICE_ACCOUNT),
+});
 
 // Makes an authenticated API request.
 const gcloudUpload = async (file) => {
