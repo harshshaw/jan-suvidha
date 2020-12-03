@@ -1,5 +1,4 @@
 const { Storage } = require("@google-cloud/storage");
-const projectId = process.env.PROJECT_ID;
 // const keyFilename = "Jan-Suvidha-523c6c8c68af.json";
 
 const storage = new Storage({

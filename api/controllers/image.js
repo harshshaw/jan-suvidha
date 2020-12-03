@@ -2,6 +2,7 @@ const User = require("../models/user");
 const Image = require("../models/image");
 const { handleError } = require("../services/error");
 const { gcloudUpload } = require("../services/gcloud_bucket");
+const { tweet } = require("../services/tweet");
 
 // upload and check image
 exports.uploadImage = async (req, res) => {
