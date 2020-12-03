@@ -19,6 +19,7 @@ exports.uploadImage = async (req, res) => {
         coordinates: [long, lat],
       },
       department: department,
+      resolved: false,
     });
 
     await image.save();
