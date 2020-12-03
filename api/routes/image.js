@@ -10,18 +10,7 @@ const { upload } = require("../services/image_upload");
 // @route       POST api/v1/image/upload
 // @dsc         upload a image
 // @access      Private
-router.post(
-  "/upload",
-  auth,
-  [
-    check("long", "Please enter a valid longitude").isLatLong(),
-    check("lat", "Please enter a valid longitude").isLatLong(),
-    check("department", "Please enter a valid department").notEmpty(),
-  ],
-  validate,
-  upload.single("file"),
-  uploadImage
-);
+router.post("/upload", auth, upload.single("file"), uploadImage);
 
 // @route       GET api/v1/image/getmyimages
 // @dsc         get images by me
