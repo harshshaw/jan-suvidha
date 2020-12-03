@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
+const Admin = require("../models/admin");
 
 exports.login = async (req, res) => {
   try {
@@ -13,6 +14,29 @@ exports.login = async (req, res) => {
       });
       await user.save();
       giveToken(user, res);
+    }
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({
+      success: false,
+      error: "Internal Server Error",
+    });
+  }
+};
+
+exports.loginAdmin = async (req, res) => {
+  try {
+    const { email, department } = req.body;
+    let admin = await Admin.findOne({ email });
+    if (admin) {
+      giveToken(admin, res);
+    } else {
+      admin = new Admin({
+        email,
+        department,
+      });
+      await admin.save();
+      giveToken(admin, res);
     }
   } catch (err) {
     console.error(err.message);
@@ -44,7 +68,6 @@ function giveToken(user, res) {
         token: token,
         userId: user.id,
       });
-      console.log("moyht");
     }
   );
 }

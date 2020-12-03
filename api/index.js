@@ -17,6 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Define Routes
 app.use("/api/v1/users", require("./routes/user"));
 app.use("/api/v1/image", require("./routes/image"));
+app.use("/api/v1/admin", require("./routes/admin"));
 
 // Serve static assets in production
 if (process.env.NODE_ENV === "production") {
