@@ -24,6 +24,7 @@ exports.uploadImage = async (req, res) => {
 
     return res.json({
       success: true,
+      url: url,
       message: "Image uploaded successfully",
     });
   } catch (err) {
