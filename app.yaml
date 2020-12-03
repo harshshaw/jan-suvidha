@@ -1,5 +1,5 @@
 runtime: nodejs14
-env: flex
+# env: flex
 
 # https://cloud.google.com/appengine/docs/flexible/nodejs/configuring-your-app-with-app-yaml
 # This sample incurs costs to run on the App Engine flexible environment.
