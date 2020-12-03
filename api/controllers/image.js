@@ -1,15 +1,19 @@
 const User = require("../models/user");
 const Image = require("../models/image");
 const { handleError } = require("../services/error");
+const { gcloudUpload } = require("../services/gcloud_bucket");
 
 // upload and check image
 exports.uploadImage = async (req, res) => {
   try {
     const { long, lat, department } = req.body;
-    // const user = await User.findById(req.user.id);
+
+    const url = await gcloudUpload(req.file.path);
+    console.log(url);
+
     let image = new Image({
       user: req.user.id,
-      url: "url",
+      url: url,
       location: {
         coordinates: [long, lat],
       },
@@ -23,6 +27,7 @@ exports.uploadImage = async (req, res) => {
       message: "Image uploaded successfully",
     });
   } catch (err) {
+    console.log(err);
     handleError(res, 500, "Internal Server Error");
   }
 };
