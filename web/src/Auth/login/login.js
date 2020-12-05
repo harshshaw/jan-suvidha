@@ -13,7 +13,7 @@ const Login = () => {
     const signin = async () => {
         await signInWithGoogle();
         unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
-            updateEmail(user.email);
+            updateEmail(user);
             axios
                 .post("https://jan-suvidha.herokuapp.com/api/v1/users/admin/login", {
                     email: user.email,
@@ -36,10 +36,10 @@ const Login = () => {
             {email ? (
                 <div>
                     <div>
-                        <img src='xyz' />
+                        <img src={email.photoURL} />
                     </div>
-                    <div>Name:</div>
-                    <div>Email:</div>
+                    <div>Name:{email.displayName}</div>
+                    <div>Email:{email.email}</div>
 
                     <button
                         onClick={() => {
